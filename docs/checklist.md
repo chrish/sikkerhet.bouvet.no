@@ -29,7 +29,7 @@ Last ned [sjekklisten](https://raw.githubusercontent.com/bouvet/sikkerhet.bouvet
         * Hvilke forventninger har kunden og har vi rigget oss riktig for å møte disse? 
     4.	Ved en hendelse, har vi avklart hvem som skal kontaktes i Bouvet og hos kunden? 
     5.	Er det definert en plan for disaster recovery?
-        * Har teamet dokumentert og eventuelt testet hvordan applikasjonen kan gjøres tilgjengelig vet plutselige hendelser, eksempelvis ved bortfall av datasenter hos oss eller eksterne leverandører, også inkludert skyleverandører?         
+        * Har teamet dokumentert og eventuelt testet hvordan applikasjonen kan gjøres tilgjengelig ved plutselige hendelser, eksempelvis ved bortfall av datasenter hos oss eller eksterne leverandører, også inkludert skyleverandører?         
     6.	Dersom applikasjonen blir utilgjengelig i kortere eller lengre perioder, hvilke følger får dette for oss og kunden?     
         * Finnes det alternativer eller workarounds for løsningen? 
         * Er disse dokumentert og beskrevet, også med tanke på eventuelt ekstraarbeid som må gjøres etter at løsningen bli tilgjengelig igjen? 
