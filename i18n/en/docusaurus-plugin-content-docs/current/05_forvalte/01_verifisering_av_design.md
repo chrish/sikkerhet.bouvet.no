@@ -1,7 +1,7 @@
 ---
+id: verify_design
 sidebar_position: 1
 title: Verify the Design
-id: en_verify_design
 slug: /manage/verify_design
 ---
 

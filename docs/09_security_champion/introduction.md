@@ -1,3 +1,6 @@
+--- 
+slug: /security_champion/introduksjon
+---
 # Security Champion
 
 <div className="row category-into">

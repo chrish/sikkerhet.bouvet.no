@@ -1,4 +1,5 @@
 ---
+id: verify_design
 sidebar_position: 1
 title: Verifiser design
 slug: /forvalte/verifiser_design
