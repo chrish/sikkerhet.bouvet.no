@@ -27,7 +27,7 @@ Svaret fra denne planleggingen vil være med å beskrive hvilke krav som stilles
 &lt;ul>
 &lt;li>&lt;a href="https://en.wikipedia.org/wiki/Integrated_development_environment">IDE&lt;/a>&lt;/li>
 &lt;li>et system for versjonskontroll av koden, typisk &lt;em>git&lt;/em>&lt;/li>
-&lt;li>et verktøy for &lt;a href="no/deploye/cicd">CI/CD&lt;/a> som kan utføre ulike oppgaver relatert til bygging, testing eller deployment&lt;/li>
+&lt;li>et verktøy for &lt;a href="https://chrish.github.io/sikkerhet.bouvet.no/no/deploye/cicd/">CI/CD&lt;/a> som kan utføre ulike oppgaver relatert til bygging, testing eller deployment&lt;/li>
 &lt;li>andre tjenester driftet eller konsumert av teamet, f.eks. meldingstjenester, filoverføringstjenester, generativ AI (copilots) eller liknende&lt;/li>
 &lt;/ul>
 &lt;p>Disse verktøyene kan ha stor betydning for sikkerhet og kvalitet i leveranser, så det er viktig at teamet har et forhold til hvordan disse settes opp.&lt;/p></description></item><item><title>Sikkerhetskontrollpunkt</title><link>https://chrish.github.io/sikkerhet.bouvet.no/no/planlegge/sikkerhetskontrollpunkt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://chrish.github.io/sikkerhet.bouvet.no/no/planlegge/sikkerhetskontrollpunkt/</guid><description>&lt;div class="tip-box">

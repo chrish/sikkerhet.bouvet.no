@@ -28,7 +28,7 @@ The answer from this planning will help describe the requirements for the soluti
 &lt;ul>
 &lt;li>&lt;a href="https://en.wikipedia.org/wiki/Integrated_development_environment">IDE&lt;/a>&lt;/li>
 &lt;li>a version control system for the code, typically &lt;em>git&lt;/em>&lt;/li>
-&lt;li>a tool for &lt;a href="https://chrish.github.io/sikkerhet.bouvet.no/sikkerhet.bouvet.no/deploy/cicd/">CI/CD&lt;/a> that can perform various tasks related to building, testing, or deployment&lt;/li>
+&lt;li>a tool for &lt;a href="https://chrish.github.io/sikkerhet.bouvet.no/deploy/cicd/">CI/CD&lt;/a> that can perform various tasks related to building, testing, or deployment&lt;/li>
 &lt;li>other services managed or consumed by the team, e.g., messaging services, file transfer services, or similar&lt;/li>
 &lt;/ul>
 &lt;p>These tools can significantly impact security and quality in deliveries, so it is important that the team considers how these are configured.&lt;/p></description></item><item><title>Security Checkpoints</title><link>https://chrish.github.io/sikkerhet.bouvet.no/plan/security-checkpoints/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://chrish.github.io/sikkerhet.bouvet.no/plan/security-checkpoints/</guid><description>&lt;p>Depending on the security level a delivery aims to achieve, it may be necessary to define mechanisms for assessing security at fixed points in the development cycle, known as security checkpoints.&lt;/p>
