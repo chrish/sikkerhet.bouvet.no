@@ -10,7 +10,7 @@ Sist oppdatert:
 Det er ikke gitt at alle punktene er relevante i alle prosjekter, eller at innføring av alle tiltak er ønskelig. Hvert enkelt team og leveranseansvarlig må selv vurdere kost/nytte og hvilket ansvar og risiko en påtar seg ved å ikke innføre tiltak. Sikkerhet krever kontinuerlig arbeid, så se over sjekklista jevnlig for å se om det er tiltak som kan eller bør innføres slik at en ikke overser noe. 
 
 Last ned sjekklisten og implementer den som en del av kildekoden i ditt prosjekt!
-sdfsfsfsf
+sdfsfsfsfdsfsfsdfsf
 ## Planlegge
 1.	[Er det klart hvilket ansvar vi har i leveransen og er øvrig ansvar klart fordelt?]({{< ref "planlegge/ansvarsfordeling.md" >}})
 2.	[Er data i systemet klassifisert og håndteres deretter?]({{< ref "planlegge/data-og-klassifisering#klassifisering.md" >}})
