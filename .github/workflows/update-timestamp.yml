@@ -35,7 +35,7 @@ jobs:
         run: |
           echo "Changed files: ${{ steps.changed-files.outputs.changedFilenames }}"
           # We'll check if certain files are in the changed list
-          FILES=("sikkerhet.bouvet.no/content/en/checklist.md" "sikkerhet.bouvet.no/content/no/sjekklisten.md")
+          FILES=("content/en/checklist.md" "content/no/sjekklisten.md")
           HAS_CHANGED=false
           
           for FILE in "${FILES[@]}"; do
@@ -61,7 +61,7 @@ jobs:
         run: |
           TODAY=$(date +'%Y.%m.%d')
           
-          FILES=("sikkerhet.bouvet.no/content/en/checklist.md" "sikkerhet.bouvet.no/content/no/sjekklisten.md")
+          FILES=("content/en/checklist.md" "content/no/sjekklisten.md")
           for FILE in "${FILES[@]}"; do
             if echo "${{ steps.changed-files.outputs.changedFilenames }}" | grep -q "$FILE"; then
               echo "Updating date in $FILE"
