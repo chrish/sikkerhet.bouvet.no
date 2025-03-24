@@ -15,7 +15,7 @@ jobs:
 
       - name: Get last modified dates and update Markdown files
         run: |
-          FILES=("path/to/file1.md" "path/to/file2.md")
+          FILES=("content/en/checklist.md" "content/no/sjekklisten.md")
           for FILE in "${FILES[@]}"; do
             if git diff --quiet HEAD^ -- "$FILE"; then
               echo "$FILE is unchanged, skipping."
