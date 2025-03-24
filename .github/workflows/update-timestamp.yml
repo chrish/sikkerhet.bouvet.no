@@ -33,10 +33,5 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            echo "Committing and pushing"
-            git commit -am "Updated dates in checklists"
-            git push
-          fi
+          git commit -am "Update last modified dates in checklist automatically"
+          git push
