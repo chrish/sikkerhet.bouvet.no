@@ -23,7 +23,8 @@ jobs:
               echo "Updating $FILE"
               LAST_MODIFIED=$(date +'%Y.%m.%d')
               sed -i -E "/^(Last modified: |Sist oppdatert: ).*/s//\1$LAST_MODIFIED/" "$FILE"
-
+              git add "$FILE"
+              
               echo "$FILE updated; date set to $LAST_MODIFIED"
             fi
           done
