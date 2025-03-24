@@ -1,78 +1,42 @@
-name: Update Checklist Date
+name: Update checklist dates
 
 on:
   pull_request:
     types: [opened, synchronize, reopened]
 
 permissions:
-  contents: write   # Needed so we can push to the PR branch
+  contents: write
 
 jobs:
-  update-checklist:
+  update-dates:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Get changed files in this PR
-        id: changed-files
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const prNumber = context.payload.pull_request.number;
-            const allChangedFiles = await github.paginate(
-              github.rest.pulls.listFiles,
-              {
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                pull_number: prNumber
-              }
-            );
-            const changedFilenames = allChangedFiles.map(f => f.filename);
-            // Return as an output so subsequent steps can use it.
-            return { changedFilenames };
-
-      - name: Check if checklist files changed
-        id: checklist-changed
-        run: |
-          echo "Changed files: ${{ steps.changed-files.outputs.changedFilenames }}"
-          # We'll check if certain files are in the changed list
-          FILES=("content/en/checklist.md" "content/no/sjekklisten.md")
-          HAS_CHANGED=false
-          
-          for FILE in "${FILES[@]}"; do
-            if echo "${{ steps.changed-files.outputs.changedFilenames }}" | grep -q "$FILE"; then
-              echo "$FILE changed"
-              HAS_CHANGED=true
-            else 
-              echo "$FILE not changed"
-            fi
-          done
-          
-          echo "has_changed=$HAS_CHANGED" >> $GITHUB_OUTPUT
-
       - name: Checkout PR branch
-        if: steps.checklist-changed.outputs.has_changed == 'true'
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0  # so we can fully commit/push
+          fetch-depth: 0  # So we can compare to HEAD^
 
-      - name: Update date in files if changed
-        if: steps.checklist-changed.outputs.has_changed == 'true'
+      - name: Set Git user identity
         run: |
-          TODAY=$(date +'%Y.%m.%d')
-          
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+      - name: Detect & update changed files
+        run: |
           FILES=("content/en/checklist.md" "content/no/sjekklisten.md")
           for FILE in "${FILES[@]}"; do
-            if echo "${{ steps.changed-files.outputs.changedFilenames }}" | grep -q "$FILE"; then
-              echo "Updating date in $FILE"
-              sed -i -E "/^(Last modified:|Sist oppdatert:).*/s//\\1 $TODAY/" "$FILE"
-              git add "$FILE"
+            # Compare file between HEAD and HEAD^ 
+            if git diff --quiet HEAD^ -- "$FILE"; then
+              echo "$FILE unchanged, skipping."
             else
-              echo "$FILE not changed, skipping date update."
+              echo "Updating $FILE"
+              LAST_MODIFIED=$(date +'%Y.%m.%d')
+              sed -i -E "/^(Last modified: |Sist oppdatert: ).*/s//\1$LAST_MODIFIED/" "$FILE"
+              git add "$FILE"
             fi
           done
           
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git commit -m "Update last modified date(s)" || echo "No changes to commit."
+          # Commit if staged changes exist
+          git commit -m "Update last modified dates in Markdown files" || echo "No changes to commit."
           git push origin HEAD
