@@ -13,6 +13,11 @@ jobs:
         with:
           fetch-depth: 0  # Ensure full history is available
 
+      - name: Set Git user identity
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
       - name: Get last modified dates and update Markdown files
         run: |
           FILES=("content/en/checklist.md" "content/no/sjekklisten.md")
