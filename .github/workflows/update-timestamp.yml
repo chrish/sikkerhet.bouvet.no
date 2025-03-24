@@ -20,8 +20,11 @@ jobs:
             if git diff --quiet HEAD^ -- "$FILE"; then
               echo "$FILE is unchanged, skipping."
             else
-              LAST_MODIFIED=$(git log -1 --format="%ad" --date=format:"%Y-%m-%d" -- "$FILE")
+              echo "Updating $FILE"
+              LAST_MODIFIED=$(date +'%Y.%m.%d')
               sed -i -E "/^(Last modified: |Sist oppdatert: ).*/s//\1$LAST_MODIFIED/" "$FILE"
+
+              echo "$FILE updated; date set to $LAST_MODIFIED"
             fi
           done
 
@@ -32,6 +35,7 @@ jobs:
           if git diff --quiet; then
             echo "No changes to commit."
           else
+            echo "Committing and pushing"
             git commit -am "Update last modified dates in Markdown files"
             git push
           fi
