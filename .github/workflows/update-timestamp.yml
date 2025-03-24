@@ -31,7 +31,7 @@ jobs:
 
       - name: Commit and push changes if needed
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git commit -am "Update last modified dates in checklist automatically"
-          git push
+          git checkout "$GITHUB_HEAD_REF"
+          
+          git commit -am "Update last modified dates in Markdown files"
+          git push origin "$GITHUB_HEAD_REF"
