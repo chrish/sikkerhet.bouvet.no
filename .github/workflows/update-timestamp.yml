@@ -61,7 +61,7 @@ jobs:
         run: |
           TODAY=$(date +'%Y.%m.%d')
           
-          FILES=("content/en/checklist.md" "content/no/sjekklisten.md")
+          FILES=("sikkerhet.bouvet.no/content/en/checklist.md" "sikkerhet.bouvet.no/content/no/sjekklisten.md")
           for FILE in "${FILES[@]}"; do
             if echo "${{ steps.changed-files.outputs.changedFilenames }}" | grep -q "$FILE"; then
               echo "Updating date in $FILE"
