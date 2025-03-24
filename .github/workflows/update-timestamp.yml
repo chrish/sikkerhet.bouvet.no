@@ -1,42 +1,37 @@
-name: Update Last Modified Timestamp
+name: Update Markdown Dates
 
 on:
-  push:
-    branches:
-      - main  # Adjust branch as needed
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
-  update-timestamps:
+  update-dates:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Ensure full history is available
 
-      - name: Get changed files
-        id: changed-files
+      - name: Get last modified dates and update Markdown files
         run: |
-          FILES=("content/en/checklist.md" "content/no/sjekklisten.md") 
-          MODIFIED_FILES=""
+          FILES=("path/to/file1.md" "path/to/file2.md")
           for FILE in "${FILES[@]}"; do
-            if git diff --name-only HEAD^ HEAD | grep -q "^$FILE$"; then
-              MODIFIED_FILES="$MODIFIED_FILES $FILE"
+            if git diff --quiet HEAD^ -- "$FILE"; then
+              echo "$FILE is unchanged, skipping."
+            else
+              LAST_MODIFIED=$(git log -1 --format="%ad" --date=format:"%Y-%m-%d" -- "$FILE")
+              sed -i -E "/^(Last modified: |Sist oppdatert: ).*/s//\1$LAST_MODIFIED/" "$FILE"
             fi
           done
-          echo "modified_files=$MODIFIED_FILES" >> $GITHUB_ENV
 
-      - name: Update Last Modified date
-        if: env.modified_files != ''
+      - name: Commit and push changes if needed
         run: |
-          TODAY=$(date +"%d.%m.%Y")
-          for FILE in ${{ env.modified_files }}; do
-            sed -i "s/^Last Modified: .*/Last Modified: $TODAY/" "$FILE"
-            sed -i "s/^Sist endret: .*/Sist endret: $TODAY/" "$FILE"
-          done
-
-      - name: Commit and push changes
-        if: env.modified_files != ''
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git commit -am "Updated Last Modified timestamp for changed files"
-          git push
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          if git diff --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -am "Update last modified dates in Markdown files"
+            git push
+          fi
